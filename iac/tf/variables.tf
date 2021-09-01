@@ -1,6 +1,6 @@
 variable "resource-group-dev" {
   description = "azurerm resource groups"
-  default     = "adf_example_dev"
+  default     = "POC"
 }
 
 variable "resource-location" {
