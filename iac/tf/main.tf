@@ -12,7 +12,7 @@ data "azurerm_client_config" "current" {}
 terraform {
   backend "remote" {
     hostname = "app.terraform.io"
-    organization = "<>"
+    organization = "<aspatil919>"
 
     workspaces {
       name = "adf_automation_prod"
@@ -25,7 +25,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_key_vault" "adf_kvamartya_prod" {
-  name                        = "<>"
+  name                        = "pockeyvault100"
   location                    = var.resource-location
   resource_group_name         = var.resource-group-prod
   enabled_for_disk_encryption = true
@@ -57,7 +57,7 @@ resource "azurerm_key_vault" "adf_kvamartya_prod" {
 }
 
 resource "azurerm_storage_account" "adf_storage" {
-  name                     = "<>"
+  name                     = "pocprodstorage100"
   resource_group_name      = var.resource-group-prod
   location                 = var.resource-location
   account_tier             = "Standard"
@@ -70,13 +70,13 @@ resource "azurerm_storage_account" "adf_storage" {
 }
 
 resource "azurerm_storage_container" "adf_storage_source_01" {
-  name                  = "adfstoragesource01"
+  name                  = "con1"
   storage_account_name  = azurerm_storage_account.adf_storage.name
   container_access_type = "private"
 }
 
 resource "azurerm_storage_container" "adf_storage_target_01" {
-  name                  = "adfstoragetarget01"
+  name                  = "con2"
   storage_account_name  = azurerm_storage_account.adf_storage.name
   container_access_type = "private"
 }
@@ -92,7 +92,7 @@ resource "azurerm_key_vault_secret" "prod_storage_conn" {
 }
   
 resource "azurerm_data_factory" "adf_test" {
-  name                = "adftestamartyaprod"
+  name                = "pocadf100"
   resource_group_name = var.resource-group-prod
   location            = var.resource-location
 
