@@ -10,7 +10,7 @@
 terraform {
   backend "remote" {
     hostname = "app.terraform.io"
-    organization = "<>"
+    organization = "aspatil919"
 
     workspaces {
       name = "adf_automation"
@@ -24,7 +24,7 @@ provider "azurerm" {
 
 
 resource "azurerm_storage_account" "adf_storage" {
-  name                     = "<>"
+  name                     = "pocstorage100"
   resource_group_name      = var.resource-group-dev
   location                 = var.resource-location
   account_tier             = "Standard"
@@ -37,24 +37,24 @@ resource "azurerm_storage_account" "adf_storage" {
 }
 
 resource "azurerm_storage_container" "adf_storage_source_01" {
-  name                  = "adfstoragesource01"
+  name                  = "con1"
   storage_account_name  = azurerm_storage_account.adf_storage.name
   container_access_type = "private"
 }
 
 resource "azurerm_storage_container" "adf_storage_target_01" {
-  name                  = "adfstoragetarget01"
+  name                  = "con2"
   storage_account_name  = azurerm_storage_account.adf_storage.name
   container_access_type = "private"
 }
 
 resource "azurerm_data_factory" "adf_test" {
-  name                = "<>"
+  name                = "pocadf100"
   resource_group_name = var.resource-group-dev
   location            = var.resource-location
 
   github_configuration {
-    account_name    = "<>"
+    account_name    = "aspatil919"
     branch_name     = "adf_dev"
     git_url         = "https://github.com"
     repository_name = "adf_automation"
